@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808002223) do
+ActiveRecord::Schema.define(version: 20160808232455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 20160808002223) do
   end
 
   create_table "number_ranges", force: :cascade do |t|
-    t.integer  "min"
-    t.integer  "max"
-    t.integer  "selected",   default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "min",         default: 1
+    t.integer  "max",         default: 5
+    t.integer  "selected",    default: 5
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.text     "description"
   end
 
   create_table "options", force: :cascade do |t|

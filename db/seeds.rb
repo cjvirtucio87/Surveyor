@@ -22,7 +22,8 @@ end
   end
 
   10.times do |j|
-    NumberRange.create!(min: 1, max: [5,10].sample)
+    NumberRange.create!(description: "This is a Number Range",
+                        min: 1, max: [3,5,10].sample)
   end
 
   10.times do |i|

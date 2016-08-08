@@ -1,0 +1,14 @@
+<h1>NumberRanges#new</h1>
+<%= form_for @number_range do |question_fields| %>
+  <%= content_tag :h3, "Your question" %>
+  <%= question_fields.label :description %>
+  <%= question_fields.text_field :description %>
+  <br>
+  <% [3,5,10].each do |num| %>
+    <%= question_fields.label :max, value: "#{num}" %>
+    <%= question_fields.radio_button(:max, num) %>
+  <% end %>
+  <%= hidden_field_tag 'survey_id', "#{@survey.id}" %>
+  <br>
+  <%= question_fields.submit 'Add question' %>
+<% end %>
