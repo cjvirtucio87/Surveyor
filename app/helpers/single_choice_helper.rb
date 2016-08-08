@@ -1,0 +1,2 @@
+module SingleChoiceHelper
+end

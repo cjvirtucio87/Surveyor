@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @survey = Survey.find(params[:survey_id])
-    @questions = @survey.questions
+    survey = Survey.find(params[:survey_id])
   end
 
   def show
@@ -9,7 +8,6 @@ class QuestionsController < ApplicationController
 
   def new
     @survey = Survey.find(params[:survey_id])
-    @question = @survey.questions.new
   end
 
   def create

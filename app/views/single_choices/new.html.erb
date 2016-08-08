@@ -1,0 +1,16 @@
+<h1>SingleChoice#new</h1>
+<%= form_for @scq do |question_fields| %>
+  <%= content_tag :h3, "Your question" %>
+  <%= question_fields.label :description %>
+  <%= question_fields.text_field :description %>
+  <br>
+  <%= content_tag :h4, "Some options" %>
+  <%= question_fields.fields_for :options do |option_fields| %>
+    <%= option_fields.label :description %>
+    <%= option_fields.text_field :description %>
+    <br>
+  <% end %>
+  <%= hidden_field_tag 'survey_id', "#{@survey.id}" %>
+  <br>
+  <%= question_fields.submit 'Add question' %>
+<% end %>

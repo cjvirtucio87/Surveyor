@@ -1,2 +1,9 @@
 <h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+
+<h1>Add a new Question!</h1>
+
+<h3>Multiple Choice </h3>
+<%= link_to "Multiple Choice", new_multi_choice_path(survey_id: "#{@survey.id}") %>
+
+<h3>Single Choice </h3>
+<%= link_to "Single Choice", new_single_choice_path(survey_id: "#{@survey.id}") %>
