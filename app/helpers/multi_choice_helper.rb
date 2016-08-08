@@ -1,0 +1,2 @@
+module MultiChoiceHelper
+end
