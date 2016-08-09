@@ -1,5 +1,7 @@
 <h1>Surveys#show</h1>
 <p>Find me in app/views/surveys/show.html.erb</p>
 
+
+
 <%= link_to "Add question", new_survey_question_path(@survey.id) %>
 <input type='hidden' name='survey_id' value="<%= @survey.id %>">
