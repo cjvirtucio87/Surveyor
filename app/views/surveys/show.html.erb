@@ -1,6 +1,9 @@
 <h1>Surveys#show</h1>
 <p>Find me in app/views/surveys/show.html.erb</p>
 
+<%= content_tag :h2, @survey.title %>
+<%= content_tag :p, @survey.description %>
+
 <%= render partial: 'shared/multi_choice_question', collection: @survey.multi_choices %>
 <%= render partial: 'shared/single_choice_question',
   collection: @survey.single_choices %>

@@ -2,11 +2,10 @@
 
 <h1>Add a new Question!</h1>
 
-<h3>Multiple Choice </h3>
-<%= link_to "Multiple Choice", new_multi_choice_path(survey_id: "#{@survey.id}") %>
-
-<h3>Single Choice </h3>
+<h3>Questions with Options</h3>
+<%= link_to "Multiple Choice", new_multi_choice_path(survey_id: "#{@survey.id}") %><br>
 <%= link_to "Single Choice", new_single_choice_path(survey_id: "#{@survey.id}") %>
 
-<h3>Number Range Choice </h3>
+
+<h3>Questions with Number Ranges</h3>
 <%= link_to "Number Range", new_number_range_path(survey_id: "#{@survey.id}") %>

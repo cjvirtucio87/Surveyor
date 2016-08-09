@@ -1,0 +1,17 @@
+<%= form_for optionable do |question_fields| %>
+  <%= content_tag :h3, "Your question" %>
+  <%= question_fields.label :description %>
+  <%= question_fields.text_field :description %>
+  <br>
+  <%= content_tag :h4, "Some options" %>
+   <% 4.times do %>
+      <%= question_fields.fields_for :options do |option_fields| %>
+        <%= option_fields.label :description %>
+        <%= option_fields.text_field :description %>
+        <br>
+      <% end %>
+    <% end %>
+  <%= hidden_field_tag 'survey_id', "#{@survey.id}" %>
+  <br>
+  <%= question_fields.submit 'Add question' %>
+<% end %>

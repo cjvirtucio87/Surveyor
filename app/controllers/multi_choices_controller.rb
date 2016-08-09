@@ -2,6 +2,7 @@ class MultiChoicesController < ApplicationController
   def new
     @survey = Survey.find(params[:survey_id])
     @mcq = MultiChoice.new
+    @mcq.options.build
   end
 
   def create
@@ -26,15 +27,17 @@ class MultiChoicesController < ApplicationController
       params.require(:multi_choice).permit(:description,
                                            options_attributes: [
                                            :id,
-                                           :description,
-                                           :optionable_type,
-                                           :optionable_id
+                                           :description
                                         ])
     end
 
     def make_mcq
       @survey = Survey.find(params[:survey_id])
-      @mcq = MultiChoice.create!(multi_choice_params)
+      @mcq = MultiChoice.new(description: multi_choice_params[:description])
+      @mcq.save!
+      multi_choice_params[:options_attributes].each do |k,v|
+        @mcq.options.create!(v)
+      end
       @mcq.questions.create!(survey_id: @survey.id)
     end
 end
