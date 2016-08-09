@@ -1,13 +1,4 @@
 <h1>Surveys#show</h1>
 <p>Find me in app/views/surveys/show.html.erb</p>
 
-<%= content_tag :h2, @survey.title %>
-<%= content_tag :p, @survey.description %>
-
-<%= render partial: 'shared/multi_choice_question', collection: @survey.multi_choices %>
-<%= render partial: 'shared/single_choice_question',
-  collection: @survey.single_choices %>
-<%= render partial: 'shared/number_range_question', collection: @survey.number_ranges %>
-
-<%= link_to "Add question", new_survey_question_path(@survey.id) %>
-<input type='hidden' name='survey_id' value="<%= @survey.id %>">
+<%= render partial: 'shared/builder_show', locals: { survey: @survey } %>

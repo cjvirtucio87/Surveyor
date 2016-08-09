@@ -38,6 +38,7 @@ puts "Building Surveys.."
 
   # Make a numberrange question.
   puts "Number Range ##{i}.."
-  n = NumberRange.create!(max: [3,5,7].sample)
+  num = [3,5,7].sample
+  n = NumberRange.create!(description: "Rate this on a scale of 1 to num (num being the highest", max: num)
   n.questions.create!(survey_id: n.id)
 end
