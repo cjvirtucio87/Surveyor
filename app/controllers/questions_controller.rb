@@ -1,9 +1,4 @@
 class QuestionsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
 
   def new
     @survey = Survey.find(params[:survey_id])
@@ -11,12 +6,6 @@ class QuestionsController < ApplicationController
 
   def create
     @survey = Survey.find(question_params[:survey])
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

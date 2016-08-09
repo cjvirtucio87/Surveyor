@@ -10,18 +10,6 @@ class MultiChoicesController < ApplicationController
     redirect_to new_survey_question_path(@survey)
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def show
-  end
-
-  def destroy
-  end
-
   private
     def multi_choice_params
       params.require(:multi_choice).permit(:description,

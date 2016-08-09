@@ -6,45 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Survey.destroy_all
+MultiChoice.destroy_all
+SingleChoice.destroy_all
+NumberRange.destroy_all
+Option.destroy_all
+Question.destroy_all
 
+puts "Building Surveys.."
 10.times do |i|
-  Survey.create!(title: "Survey##{i}",
-                 description: "This is a survey")
-end
+  s = Survey.create!(title: "Survey##{i}",
+                     description: "This is a survey (#{i})")
 
-10.times do |i|
-  10.times do |j|
-    MultiChoice.create!(description: "This is a MultiChoice question")
+  # Make a multichoice question.
+  puts "MCQ ##{i}.."
+  mcq = MultiChoice.new(description: "What are your favorite colors?")
+  mcq.save!
+  4.times do
+    mcq.options.create!(description: "#{Faker::Color.color_name}")
   end
+  mcq.questions.create!(survey_id: s.id)
 
-  10.times do |j|
-    SingleChoice.create!(description: "This is a SingleChoice question")
+  # Make a singlechoice question.
+  puts "SCQ ##{i}.."
+  scq = SingleChoice.new(description: "What's your favorite book?")
+  scq.save!
+  4.times do
+    scq.options.create!(description: "#{Faker::Book.title}, by #{Faker::Book.author}")
   end
+  scq.questions.create!(survey_id: s.id)
 
-  10.times do |j|
-    NumberRange.create!(description: "This is a Number Range",
-                        min: 1, max: [3,5,10].sample)
-  end
-
-  10.times do |i|
-    option_count = [4,5].sample
-    model = %w{ MultiChoice SingleChoice }.sample
-                                          .constantize
-    offset = rand(model.count)
-    row = model.offset(offset).first
-    options = []
-    option_count.times do |j|
-      options << Option.new(description: "This is option ##{j}.")
-    end
-    row.options = options
-    NumberRange.create!(min: 1, max: [5,10].sample)
-  end
-
-  survey_id = Survey.pluck(:id).sample
-  question = %w{ MultiChoice SingleChoice NumberRange }.sample
-  question_id = question.constantize.pluck(:id).sample
-  # Store the parent row in the polymorphic identifier.
-  # Rails will take care of the rest.
-  Question.create!(survey_id: survey_id,
-                   questionable: question.constantize.find(question_id))
+  # Make a numberrange question.
+  puts "Number Range ##{i}.."
+  n = NumberRange.create!(max: [3,5,7].sample)
+  n.questions.create!(survey_id: n.id)
 end

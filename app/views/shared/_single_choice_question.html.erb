@@ -1,1 +1,7 @@
-<%= single_choice_question.description %> 
+<%= form_for single_choice_question do |f| %>
+  <%= single_choice_question.description %>
+  <%= f.collection_radio_buttons(:option_ids,
+                               single_choice_question.options,
+                               :id,
+                               :description) %>
+<% end %> 

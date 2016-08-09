@@ -9,21 +9,6 @@ class NumberRangesController < ApplicationController
     redirect_to new_survey_question_path(@survey)
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def show
-  end
-
-  def index
-  end
-
-  def destroy
-  end
-
   private
     def number_range_params
       params.require(:number_range).permit(:description,

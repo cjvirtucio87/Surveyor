@@ -1,9 +1,4 @@
 class SingleChoicesController < ApplicationController
-  def index
-  end
-
-  def show
-  end
 
   def new
     @survey = Survey.find(params[:survey_id])
@@ -13,15 +8,6 @@ class SingleChoicesController < ApplicationController
   def create
     make_scq
     redirect_to new_survey_question_path(@survey)
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private
