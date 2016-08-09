@@ -1,1 +1,5 @@
-<%= number_range_question.max %>
+<% range = (1..number_range_question.max).to_a %>
+<% range.each do |num| %>
+  <%= label :range, num %>
+  <%= radio_button_tag :range, num %>
+<% end %>
