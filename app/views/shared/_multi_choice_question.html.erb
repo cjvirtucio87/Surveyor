@@ -1,0 +1,7 @@
+<%= form_for multi_choice_question do |f| %>
+  <%= multi_choice_question.description %>
+  <%= f.collection_check_boxes(:option_ids,
+                               multi_choice_question.options,
+                               :id,
+                               :description) %>
+<% end %> 

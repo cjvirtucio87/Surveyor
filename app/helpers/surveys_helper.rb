@@ -1,4 +1,3 @@
 module SurveysHelper
 
-
 end
