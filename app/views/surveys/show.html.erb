@@ -14,4 +14,6 @@
     <%= render partial: 'shared/number_range_question', locals: { rq: rq, response_fields: survey_fields } %><br>
   <% end %>
 
+  <%= link_to "Add a new question", new_survey_question_path(@survey) %>
+
 <% end %>
