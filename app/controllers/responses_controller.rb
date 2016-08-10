@@ -7,7 +7,6 @@ class ResponsesController < ApplicationController
     @mcqs = @response.survey.multi_choices
     @scqs = @response.survey.single_choices
     @rqs = @response.survey.number_ranges
-    # raise
   end
 
   def create

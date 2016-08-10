@@ -1,7 +1,7 @@
 <%= response_fields.fields_for scq do |choice_fields| %>
   <%= choice_fields.label :description %><br>
   <%= choice_fields.collection_radio_buttons(:option_ids,
-                               scq.options,
-                               :id,
-                               :description) %><br>
+                                             scq.options,
+                                             :id,
+                                             :description) %><br>
 <% end %> 

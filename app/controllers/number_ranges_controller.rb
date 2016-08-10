@@ -19,6 +19,5 @@ class NumberRangesController < ApplicationController
       @survey = Survey.find(params[:survey_id])
       @number_range = NumberRange.create!(number_range_params)
       @number_range.questions.create!(survey_id: @survey.id)
-      raise
     end
 end

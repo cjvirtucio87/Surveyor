@@ -3,6 +3,7 @@ class SingleChoicesController < ApplicationController
   def new
     @survey = Survey.find(params[:survey_id])
     @scq = SingleChoice.new
+    @scq.options.build
   end
 
   def create
@@ -15,15 +16,17 @@ class SingleChoicesController < ApplicationController
       params.require(:single_choice).permit(:description,
                                             options_attributes: [
                                              :id,
-                                             :description,
-                                             :optionable_type,
-                                             :optionable_id
+                                             :description
                                           ])
     end
 
     def make_scq
       @survey = Survey.find(params[:survey_id])
-      @scq = SingleChoice.create!(single_choice_params)
+      @scq = SingleChoice.new(description: single_choice_params[:description])
+      @scq.save!
+      single_choice_params[:options_attributes].each do |k,v|
+        @scq.options.create!(v)
+      end
       @scq.questions.create!(survey_id: @survey.id)
     end
 end

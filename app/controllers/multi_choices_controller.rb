@@ -1,4 +1,5 @@
 class MultiChoicesController < ApplicationController
+  
   def new
     @survey = Survey.find(params[:survey_id])
     @mcq = MultiChoice.new
