@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809223940) do
+ActiveRecord::Schema.define(version: 20160810004519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20160809223940) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "number_choices", force: :cascade do |t|
+    t.integer "choice"
+    t.integer "response_id"
+    t.index ["response_id"], name: "index_number_choices_on_response_id", using: :btree
+  end
+
   create_table "number_ranges", force: :cascade do |t|
     t.integer  "min",         default: 1
     t.integer  "max",         default: 5
@@ -29,6 +35,12 @@ ActiveRecord::Schema.define(version: 20160809223940) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.text     "description"
+  end
+
+  create_table "option_choices", force: :cascade do |t|
+    t.string  "choice"
+    t.integer "response_id"
+    t.index ["response_id"], name: "index_option_choices_on_response_id", using: :btree
   end
 
   create_table "options", force: :cascade do |t|
@@ -52,9 +64,12 @@ ActiveRecord::Schema.define(version: 20160809223940) do
   end
 
   create_table "responses", force: :cascade do |t|
+    t.string   "multi_choice"
+    t.string   "single_choice"
+    t.integer  "range"
     t.integer  "survey_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   end
 
@@ -73,6 +88,8 @@ ActiveRecord::Schema.define(version: 20160809223940) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "number_choices", "responses"
+  add_foreign_key "option_choices", "responses"
   add_foreign_key "questions", "surveys"
   add_foreign_key "responses", "surveys"
 end

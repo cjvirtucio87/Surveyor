@@ -4,4 +4,7 @@ class Response < ApplicationRecord
   has_many :multi_choices, through: :survey
   has_many :single_choices, through: :survey
   has_many :number_ranges, through: :survey
+  
+  has_many :option_choices
+  has_many :number_choices
 end

@@ -4,6 +4,9 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
+    @mcqs = @survey.multi_choices
+    @scqs = @survey.single_choices
+    @rqs = @survey.number_ranges
   end
 
   def new

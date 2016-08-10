@@ -11,7 +11,9 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @response = Response.create!(response_params)
+    @survey = Survey.find(session[:survey_id])
+    @response = @survey.responses.build
+    store_params
   end
 
   private
@@ -24,6 +26,14 @@ class ResponsesController < ApplicationController
 
     def current_survey
       @current_survey ||= Survey.find(session[:survey_id])
+    end
+
+    def store_params
+      response_params[:multi_choice].each do |mcq|
+        @response.option_choices.build(OptionChoice.create!(mcq))
+      end
+      @response.option_choices.build(response_params[:single_choice])
+      @response.number_choices.build(response_params[:range])
     end
 
 end

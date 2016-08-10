@@ -1,4 +1,17 @@
 <h1>Surveys#show</h1>
 <p>Find me in app/views/surveys/show.html.erb</p>
 
-<%= render partial: 'shared/builder_show', locals: { survey: @survey } %>
+<%= form_for @survey do |survey_fields| %>
+  <% @mcqs.each do |mcq| %>
+    <%= render partial: 'shared/multi_choice_question', locals: { mcq: mcq, response_fields: survey_fields } %><br>
+  <% end %>
+
+  <% @scqs.each do |scq| %>
+    <%= render partial: 'shared/single_choice_question', locals: { scq: scq, response_fields: survey_fields } %><br>
+  <% end %>
+
+  <% @rqs.each do |rq| %>
+    <%= render partial: 'shared/number_range_question', locals: { rq: rq, response_fields: survey_fields } %><br>
+  <% end %>
+
+<% end %>
