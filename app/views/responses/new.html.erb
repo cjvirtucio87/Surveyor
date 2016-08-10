@@ -1,0 +1,16 @@
+<%= form_for [@survey,@response] do |response_fields| %>
+  <% @mcqs.each do |mcq| %>
+    <%= render partial: 'shared/multi_choice_question', locals: { mcq: mcq, response_fields: response_fields } %><br>
+  <% end %>
+
+  <% @scqs.each do |scq| %>
+    <%= render partial: 'shared/single_choice_question', locals: { scq: scq, response_fields: response_fields } %><br>
+  <% end %>
+
+  <% @rqs.each do |rq| %>
+    <%= render partial: 'shared/number_range_question', locals: { rq: rq, response_fields: response_fields } %><br>
+  <% end %>
+
+  <%= response_fields.submit "Submit" %>
+
+<% end %>

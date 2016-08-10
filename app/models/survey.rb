@@ -1,5 +1,6 @@
 class Survey < ApplicationRecord
   has_many :questions
+  has_many :responses
 
   # Access to MCQs
   has_many :multi_choices, through: :questions,

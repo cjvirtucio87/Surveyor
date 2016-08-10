@@ -1,7 +1,7 @@
-<%= form_for single_choice_question do |f| %>
-  <%= content_tag :h3, single_choice_question.description %>
-  <%= f.collection_radio_buttons(:option_ids,
-                               single_choice_question.options,
+<%= response_fields.fields_for scq do |choice_fields| %>
+  <%= choice_fields.label :description %><br>
+  <%= choice_fields.collection_radio_buttons(:option_ids,
+                               scq.options,
                                :id,
-                               :description) %>
+                               :description) %><br>
 <% end %> 
